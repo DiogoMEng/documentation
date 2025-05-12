@@ -32,4 +32,27 @@ password: Joi.string()
     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
   .xor("password", "access_token")
   .with("password", "repeat_password");
+
+// Validação: uma sequência ou número opcional e irrestrito
+access_token: [
+    Joi.string,
+    Joi.number
+]
+
+// Validações:
+// --> sequência de email válida.
+// --> deve ter duas partes de domínio.
+// --> TLD deve ser .com ou .net
+email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+```
+
+_Nota: entradas inválidas serão atribuídas a `validationError`, objeto que fornece mais informações._
+
+```javascript
+// VALIDAÇÃO DIRETA
+const validaNome = Joi.string()
+  .alphanum()
+  .min(3)
+  .max(10)
 ```

@@ -30,4 +30,13 @@ const schema = Joi.object({
   .xor("password", "access_token")
   .with("password", "repeat_password");
 
-module.exports = schema;
+
+const validaNome = Joi.string()
+  .alphanum()
+  .min(3)
+  .max(10)
+
+module.exports = {
+  schema,
+  validaNome
+};
