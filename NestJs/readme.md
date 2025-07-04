@@ -186,9 +186,100 @@ export class CatsController {
 ```typescript
 /**
  *  CRIAÇÃO DE ROTA CURINGA 
+ *  
+ *  A rota irá corresponder a: abcd/123, abcd/abc, dentre outras.
+ * 
+ *  OBS: No express o curinga deve ser nomeado, por exemplo: abcd/*splat (splat é simplesmente o nome do parâmetro curinga e não tem nenhum significado especial)
  */
 @Get('abcd/*')
 findAll() {
   return 'This route uses a wildcard';
+}
+```
+
+**Decorator `@HttpCode()`** - altera a padrão de resposta de código de status.
+
+```typescript
+@Post
+@HttpCode(204)
+create() {
+  return "this action adds a new cat"
+}
+```
+
+**Decorator `@Header()`** - Especifica um cabeçalho de resposta personalizado.
+
+```typescript
+@Post
+@Header("Cache-control", "no-store")
+create() {
+  return "this action adds a new cat";
+}
+```
+
+**Decorator `@Redirect`** - redireciona uma resposta para uma URL específica
+- Argumentos opcionais: **url** e **StatusCode** (Padrão: 302).
+
+```typescript
+@Get()
+@Redirect("https://nestjs.com", 301);
+```
+
+_Nota: valores retornados substituem argumentos passados a @Redirect_
+
+```typescript
+@Get("docs")
+@Redirect("https://docs.nestjs.com", 302)
+getDocs(@Query("version") version) {
+  if (version && version == "5") {
+    return { url: "https://docs.nestjs.com/v5/" }
+  }
+}
+```
+
+**Tokens de Parâmetro** - adicionados no caminho da rota para capturar os valores dinâmicos da URL.
+
+> OBS: Rotas com parâmetros devem ser declaradas após quaisquer caminhos estáticos.
+
+```typescript
+@Get(":id")
+findOne(@Param() params: any): string {
+  console.log(params.id);
+  return `this action returns a #${params.id} cat`
+}
+
+/**
+ *  REFERENCIANDO DIRETAMENTE O TOKEN DE PARÂMETROS 
+ */
+@Get(":id")
+findOne(@Param("id") id: string): string {
+  console.log(params.id);
+  return `this action returns a #${params.id} cat`
+}
+```
+
+O decorator `@Controller` pode exigir um valor específico do host HTTP de solicitações recebidas.
+
+```typescript
+@Controller({ host: "admin.exemple.com" })
+export class AdminController {
+
+  @Get()
+  index(): string {
+    return "admin page"
+  }
+
+}
+```
+
+`@HostParam()` - acessa os parâmetros de host declarados.
+
+```typescript
+@Controller({ host: ":account.example.com" })
+export class AccountController {
+  @Get()
+  getInfo(@HostParam("account") account: string) {
+    return account;
+  }
 }
 ```
