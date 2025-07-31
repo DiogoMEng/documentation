@@ -7,6 +7,8 @@
 - <a href="#seletores">Seletores</a>
 - <a href="#esboço">Esboço CSS</a>
 - <a href="#texto">Texto CSS</a>
+- <a href="#fontes">Fontes CSS</a>
+- <a href="#links">Links CSS</a>
 
 ---
 
@@ -197,12 +199,112 @@ _Nota: pode-se utilizar da forma abreviada, text-decoration._
 |**Espaçamento de Texto**|
 |------------------------|
 
-| | |
-|-|-|
-| `text-indent` | especifica o recuo da primeira linha |
-| `letter-spacing` | define o espaço entre os caracteres em um texto |
-| `line-height` | espaço entre as linhas |
-| `word-spacing` | espaço entre as palavras de um texto |
-| `white-space` | especifica como o espaço em branco dentro de um elemento é tratado |
+|                  |                                                                    |
+|------------------|--------------------------------------------------------------------|
+| `text-indent`    | especifica o recuo da primeira linha                               |
+| `letter-spacing` | define o espaço entre os caracteres em um texto                    |
+| `line-height`    | espaço entre as linhas                                             |
+| `word-spacing`   | espaço entre as palavras de um texto                               |
+| `white-space`    | especifica como o espaço em branco dentro de um elemento é tratado |
+
+|**Sombra de texto**|
+|-------------------|
+
+```css
+h1 {
+  text-shadow: 2px 2px;
+}
+
+/*
+ADICIONA COR A SOMBRA
+*/
+h1 {
+  text-shadow: 2px 2px red;
+}
+
+/*
+ADICIONA DESFOQUE
+*/
+h1 {
+  text-shadow: 2px 2px 5px red;
+}
+```
+
+## <p id="fontes">Fontes CSS</p>
+
+Propriedade `font-variant`: especifica se um texto deve ou não ser exibido em fonte de letra maiúscula.
+
+```css
+.title-h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title-font-variant {
+  font-variant: small-caps;
+}
+```
+
+**APLICANDO A PROPRIEDADE `font-variant`**
+
+![alt text](public/img/font/image1.png)
+
+**SEM A PROPRIEDADE `font-variant`**
+
+![alt text](public/img/font/image2.png)
+
+_Nota: para permitir redimensionamento de texto, é indicado o uso da medida `em` que equivale a 16px (tamanho da fonte atual)._
+- Outra medida responsiva seria `VW`, que nada mais é do que a largura da janela de visualização.
+
+```html
+<!-- 
+UTILIZA VÁRIAS FONTES DO GOOGLE AO MESMO TEMPO
+- As fontes devem ser separadas por | 
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+```
+
+Para adicionar **efeitos a fonte de google**, adicione a api do Google, em seguida insira um nome especial de classe
+
+```html
+<!-- 
+O NOME DA CLASSE SEMPRE TERMINA COM:
+--| effect=effectname 
+--| font-effect-effectname
+-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+
+<h1 class="font-effect-fire">Sofia on Fire</h1>
+
+<!-- 
+SOLICITA VÁRIOS NOMES COM EFEITOS 
+--| Os nomes devem ser separados com |
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+```
+
+## <p id="links">Links CSS</p>
+
+| **Estados do Link** |
+|---------------------|
+
+|             |                    |
+|-------------|--------------------|
+| `a:link`    | não visitado       |
+| `a:visited` | visitado           |
+| `a:hover`   | mouse sobre o link |
+| `a:active`  | momento do clique  |
+
+```css
+a:link {
+  color: red;
+}
+```
+
+> OBS: regras para o estado do link.
+1. `hover` deve vir depois de `link` e `visited`.
+2. `active` deve vir depois de `hover`.
+
+
 
 <a href="#sumário">Retornar para sumário</a>
