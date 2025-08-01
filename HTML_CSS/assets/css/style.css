@@ -1,7 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .title-h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .title-font-variant {
   /* font-variant: small-caps; */
+}
+
+.list-position-items {
+  border: 1px solid red;
+  list-style-position: inside;
 }

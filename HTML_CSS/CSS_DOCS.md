@@ -9,6 +9,7 @@
 - <a href="#texto">Texto CSS</a>
 - <a href="#fontes">Fontes CSS</a>
 - <a href="#links">Links CSS</a>
+- <a href="#listas">Listas CSS</a>
 
 ---
 
@@ -305,6 +306,41 @@ a:link {
 1. `hover` deve vir depois de `link` e `visited`.
 2. `active` deve vir depois de `hover`.
 
+## <p id="listas">Listas CSS</p>
 
+Tipos de listas:
+1. Ordenadas `<ol>`.
+2. Não ordenadas `<ul>`.
+
+```css
+/*
+PROPRIEDADE list-style-type: especifica tipo de marcador de item de lista.
+--| type "none" é usado para remover marcadores
+*/
+
+ul.a {
+  list-style-type: circle;  /* square, upper-roman, lower-alpha (Os dois últimos valores são para listas ordenadas) */
+}
+
+/*
+PROPRIEDADE list-style-image: especifica imagem como marcador de item da lista.
+*/
+
+ul {
+  list-style-image: url("image.png");
+}
+
+/*
+PROPRIEDADE list-style-position: especifica a posição dos marcadores de itens da lista.
+--| outside: marcadores ficarão fora do item da lista.
+--| inside: marcadores ficarão dentro do item da lista.
+*/
+
+ul.a {
+  list-style-position: outside;
+}
+```
+
+_Nota: forma abreviada da propriedade `list-style`._
 
 <a href="#sumário">Retornar para sumário</a>
